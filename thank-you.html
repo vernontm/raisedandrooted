@@ -13,18 +13,21 @@
 </head>
 <body class="optin-body">
 
-  <div class="ty-card">
-    <div class="ty-emoji">🌱</div>
-    <h1 id="tyHeading">You're in!</h1>
-    <p>Your guide, <strong>The Real Numbers Behind Your Child's Future</strong>, is ready. Tap below to download it now.</p>
+  <div class="ty-wrap">
+    <div class="ty-head">
+      <div class="ty-emoji">🌱</div>
+      <h1 id="tyHeading">You're in!</h1>
+      <p>Here's your guide, <strong>The Real Numbers Behind Your Child's Future</strong>. Read it right here, or download it to keep.</p>
+      <div class="ty-actions">
+        <a class="btn btn-primary btn-lg" href="assets/raised-and-rooted-free-guide.pdf" id="downloadLink" download>Download the Guide (PDF)</a>
+        <a class="btn btn-ghost btn-lg" href="/">← Back to Raised &amp; Rooted</a>
+      </div>
+    </div>
 
-    <a class="btn btn-primary btn-lg" href="assets/raised-and-rooted-free-guide.pdf" id="downloadLink" download style="margin-bottom:14px;">Download the Guide (PDF)</a>
-    <p style="font-size:0.9rem; color:var(--muted); margin-bottom:26px;">We'll also email you a copy, keep an eye on your inbox (and the promotions or spam folder, just in case).</p>
+    <iframe class="pdf-frame" src="assets/raised-and-rooted-free-guide.pdf#view=FitH" title="The Real Numbers Behind Your Child's Future"></iframe>
 
-    <a class="btn btn-ghost btn-lg" href="/">← Back to Raised &amp; Rooted</a>
-
-    <p style="margin-top:30px; color:var(--muted); font-size:0.95rem;">
-      Curious whether your child is a fit? Just reply to that email, we read every one and we'd love to talk about your child specifically.
+    <p style="text-align:center; margin-top:24px; color:var(--muted); font-size:0.95rem;">
+      Curious whether your child is a fit? <a href="/free-guide.html" style="color:var(--terracotta-deep); font-weight:700;">Reach out</a>, we'd love to talk about your child specifically.
     </p>
   </div>
 
@@ -32,8 +35,8 @@
     // Personalize the greeting if we captured a name
     try {
       var name = localStorage.getItem('rr_lead_name');
-      if (name) {
-        document.getElementById('tyHeading').textContent = "You're in, " + name + "!";
+      if (name && name !== 'null' && name !== 'undefined' && name.trim()) {
+        document.getElementById('tyHeading').textContent = "You're in, " + name.trim() + "!";
       }
     } catch (e) {}
   </script>

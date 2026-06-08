@@ -290,6 +290,10 @@ section { padding: 100px 0; }
 .mini-stat .l { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
 
 /* ---------- Thank you ---------- */
+.ty-wrap { max-width: 940px; margin: 0 auto; padding: 40px 24px 64px; }
+.ty-head { max-width: 640px; margin: 0 auto 30px; text-align: center; }
+.ty-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+.pdf-frame { width: 100%; height: 82vh; min-height: 520px; border: 1px solid rgba(47,74,50,0.15); border-radius: 16px; box-shadow: var(--shadow); background: var(--white); display: block; }
 .ty-card { max-width: 620px; margin: 8vh auto; background: var(--white); border-radius: 22px; padding: 50px 42px; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(47,74,50,0.10); }
 .ty-emoji { font-size: 3.4rem; margin-bottom: 14px; }
 .ty-card h1 { font-size: 2.2rem; margin-bottom: 14px; }
