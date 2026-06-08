@@ -47,6 +47,27 @@ const JOBS = [
       STYLE,
   },
   {
+    key: "cover-bg",
+    aspect_ratio: "3:4",
+    resolution: "2K",
+    prompt:
+      "Premium portrait ebook / guide cover, 3:4 vertical, for a parenting guide published by a " +
+      "small private microschool. Rich deep forest-green background (color #2f4a32) with a subtle " +
+      "soft golden glow near the top, faint refined paper texture, and a thin elegant gold border " +
+      "line inset from the edges. IMPORTANT: leave a generous CLEAN EMPTY area across the top third, " +
+      "centered, reserved for a logo to be added later — do not draw any emblem, icon, tree, or " +
+      "illustration in that top area. In the vertical center, a large centered book title set in a " +
+      "classy high-contrast serif typeface, cream color (#f7f3ea), reading exactly: " +
+      "\"The Real Numbers Behind Your Child's Future\". Directly beneath the title, a short thin " +
+      "horizontal gold divider line, then a smaller centered sans-serif subtitle in soft cream " +
+      "reading exactly: \"What the data really says about the school you choose, plus 10 simple " +
+      "routines to raise a confident, capable child.\" Near the bottom center place a small cream " +
+      "rounded-pill badge containing dark green uppercase text \"FREE DOWNLOAD\", and below it small " +
+      "letter-spaced cream text reading \"RAISED & ROOTED ACADEMY\". Elegant, warm, trustworthy, " +
+      "lots of negative space, beautiful professional typography, crisp vector-clean look, no " +
+      "photographs and no people. Spell every word exactly as written.",
+  },
+  {
     key: "approach",
     aspect_ratio: "4:3",
     resolution: "2K",
