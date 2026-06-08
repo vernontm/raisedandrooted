@@ -64,22 +64,29 @@ def otsu_threshold(gray):
 
 
 def main():
-    im = Image.open(SRC).convert("RGB")
+    im = Image.open(SRC).convert("RGBA")
+    src_alpha = im.getchannel("A")
+    amin, _ = src_alpha.getextrema()
 
-    # Key out the navy background by COLOR, not brightness: the navy is the only
-    # region that is both dark AND blue-dominant. The design (cream silhouette,
-    # gold star/text, sage tree) is either bright or warm/green => keep as green.
-    def is_bg(r, g, b):
-        lum = 0.299 * r + 0.587 * g + 0.114 * b
-        return lum < 108 and b >= r - 6
+    if amin < 250:
+        # Source already has a transparent background (e.g. rr_no_bg.png):
+        # every opaque pixel IS the design, so reuse its alpha directly. This
+        # keeps the original clean anti-aliased edges.
+        alpha = src_alpha
+    else:
+        # Opaque source (navy fabric photo): key out the navy background by
+        # COLOR — it is the only region that is both dark AND blue-dominant.
+        rgb = im.convert("RGB")
 
-    mask = [0 if is_bg(r, g, b) else 255 for (r, g, b) in im.getdata()]
-    alpha = Image.new("L", im.size)
-    alpha.putdata(mask)
+        def is_bg(r, g, b):
+            lum = 0.299 * r + 0.587 * g + 0.114 * b
+            return lum < 108 and b >= r - 6
 
-    # Clean fabric-texture specks, then soften edges for anti-aliasing
-    alpha = alpha.filter(ImageFilter.MedianFilter(3))
-    alpha = alpha.filter(ImageFilter.GaussianBlur(0.8))
+        mask = [0 if is_bg(r, g, b) else 255 for (r, g, b) in rgb.getdata()]
+        alpha = Image.new("L", im.size)
+        alpha.putdata(mask)
+        alpha = alpha.filter(ImageFilter.MedianFilter(3))
+        alpha = alpha.filter(ImageFilter.GaussianBlur(0.8))
 
     # Crop to the emblem
     bbox = alpha.getbbox()
