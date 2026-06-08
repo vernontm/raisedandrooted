@@ -432,7 +432,7 @@ def build():
                   st_cta_b),
         Spacer(1, 6),
         Paragraph('<font name="NSeb" color="#f7f3ea">Visit&nbsp; raisedandrootedacademy.com'
-                  '&nbsp;&nbsp;·&nbsp;&nbsp; Call (281) 555-0140</font>',
+                  '&nbsp;&nbsp;·&nbsp;&nbsp; Call (832) 280-7665</font>',
                   style("ctac", fontName="NSeb", fontSize=11.5, textColor=CREAM, alignment=TA_CENTER)),
     ]
     S.append(cta_box(inner))
