@@ -43,19 +43,8 @@
           <h2>Get the free guide</h2>
           <p class="fc-sub">Tell us where to send it. No spam, just the guide and the occasional note from our school.</p>
 
-          <!--
-            ============================================================
-            EMAIL CAPTURE FORM
-            To go live, set the form's `action` to your provider endpoint:
-              • Formspree:  action="https://formspree.io/f/XXXXXXXX"  method="POST"
-              • Getform:    action="https://getform.io/f/XXXXXXXX"   method="POST"
-              • MailerLite/Mailchimp: paste their embed or set action to their POST URL
-            The JS below will redirect to /thank-you.html on success.
-            Until you set a real endpoint, submitting just goes to the
-            thank-you page (no data is stored).
-            ============================================================
-          -->
-          <form id="leadForm" action="REPLACE_WITH_YOUR_FORM_ENDPOINT" method="POST" novalidate>
+          <!-- Captures name + email into Supabase (insert-only), then sends to /thank-you.html -->
+          <form id="leadForm" novalidate>
             <div class="field">
               <label for="name">First name</label>
               <input type="text" id="name" name="name" placeholder="Your first name" autocomplete="given-name" required />
@@ -97,42 +86,48 @@
 
   <script>
     (function () {
+      // Supabase lead capture (publishable key is safe to expose; the table
+      // has an insert-only RLS policy, so this key cannot read the lead list).
+      var SUPABASE_URL = 'https://ssllepovajmohdhvhzsa.supabase.co';
+      var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNzbGxlcG92YWptb2hkaHZoenNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0OTYwMTcsImV4cCI6MjA5MTA3MjAxN30.qFTsGzZsN5XVX_xgxpdclWmeEtCs1ZfmmLzOsmcN_0k';
+
       var form = document.getElementById('leadForm');
       var btn = document.getElementById('submitBtn');
 
-      form.addEventListener('submit', function (e) {
-        var action = form.getAttribute('action');
-        var endpointReady = action && action.indexOf('REPLACE_WITH') === -1;
+      function go() { window.location.href = '/thank-you.html'; }
 
-        // Basic validation
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
         var name = form.name.value.trim();
         var email = form.email.value.trim();
-        if (!name || !email || email.indexOf('@') === -1) {
-          return; // let native validation handle it
-        }
-
-        // Stash the name so the thank-you page can greet them
-        try { localStorage.setItem('rr_lead_name', name); } catch (err) {}
-
-        if (!endpointReady) {
-          // No provider wired yet, skip the network call, go straight to thank-you
-          e.preventDefault();
-          window.location.href = '/thank-you.html';
+        if (!name || !email || email.indexOf('@') < 1) {
+          form.reportValidity && form.reportValidity();
           return;
         }
 
-        // Endpoint is set: submit via fetch so we can redirect cleanly
-        e.preventDefault();
+        // Honeypot: if a bot filled the hidden field, skip the DB write but
+        // still send a human-looking response.
+        var trap = form._gotcha && form._gotcha.value;
+
+        // Greet them by name on the thank-you page
+        try { localStorage.setItem('rr_lead_name', name); } catch (err) {}
+
         btn.textContent = 'Sending…';
         btn.disabled = true;
 
-        var data = new FormData(form);
-        fetch(action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-          .then(function () { window.location.href = '/thank-you.html'; })
-          .catch(function () {
-            // Even on error, don't trap the user, send them to thank-you
-            window.location.href = '/thank-you.html';
-          });
+        if (trap) { go(); return; }
+
+        fetch(SUPABASE_URL + '/rest/v1/raised_rooted_leads', {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ name: name, email: email, source: 'free-guide' })
+        }).then(go).catch(go); // never trap the user, deliver the guide either way
       });
     })();
   </script>
