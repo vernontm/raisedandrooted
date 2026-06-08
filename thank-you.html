@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're in! | Raised &amp; Rooted Academy</title>
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="optin-body">
+
+  <div class="ty-card">
+    <div class="ty-emoji">🌱</div>
+    <h1 id="tyHeading">You're in!</h1>
+    <p>Your guide, <strong>The Real Numbers Behind Your Child's Future</strong>, is on its way to your inbox right now. Give it a couple of minutes (and check your promotions or spam folder, just in case).</p>
+
+    <!--
+      DELIVERY OPTIONS:
+      1) Recommended: your email provider sends the PDF automatically on signup.
+      2) Or: host the PDF and replace the href below to let them download instantly.
+    -->
+    <p style="margin-bottom:28px;">Can't wait? <a href="#" id="downloadLink"><!-- SWAP: link to the hosted guide PDF -->Download the guide directly</a>.</p>
+
+    <a class="btn btn-green btn-lg" href="/">← Back to Raised &amp; Rooted</a>
+
+    <p style="margin-top:30px; color:var(--muted); font-size:0.95rem;">
+      Curious whether your child is a fit? Just reply to the email, we read every one and we'd love to talk about your child specifically.
+    </p>
+  </div>
+
+  <script>
+    // Personalize the greeting if we captured a name
+    try {
+      var name = localStorage.getItem('rr_lead_name');
+      if (name) {
+        document.getElementById('tyHeading').textContent = "You're in, " + name + "!";
+      }
+    } catch (e) {}
+  </script>
+</body>
+</html>

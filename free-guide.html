@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Parent Guide: The Real Numbers Behind Your Child's Future | Raised &amp; Rooted Academy</title>
+  <meta name="description" content="Get the free parent guide: the real data on public vs. private vs. micro-school outcomes, plus 10 simple at-home routines that build a confident, well-spoken child." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="optin-body">
+
+  <!-- Announcement bar -->
+  <div class="announce-bar">
+    <div class="inner">
+      <svg class="star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/></svg>
+      <span>Now enrolling for <strong>August 2026</strong> · limited spots at our Katy, TX microschool. <a href="#optin-form">Reserve your family's spot →</a></span>
+    </div>
+  </div>
+
+  <div class="optin-wrap">
+    <div class="optin-top">
+      <a class="brand" href="/" style="text-decoration:none;">
+        <span class="brand-mark has-logo"><img src="assets/logo-green-transparent.png" alt="Raised & Rooted Academy logo" /></span>
+        <span class="brand-name">Raised &amp; Rooted<small>Academy</small></span>
+      </a>
+      <a class="optin-back" href="/">← Back to site</a>
+    </div>
+
+    <div class="optin-hero">
+      <span class="eyebrow">Free Parent Guide · Instant PDF</span>
+      <h1>Before you choose a school, <span class="accent">see the numbers</span> no one shows you.</h1>
+      <p class="optin-lead">The real data on school outcomes, plus 10 simple routines that build a confident, well-spoken child. One short, no-jargon guide.</p>
+    </div>
+
+    <div class="optin-grid">
+      <!-- FORM — first in the DOM so it sits above the fold on mobile -->
+      <div id="optin-form">
+        <div class="form-card">
+          <h2>Get the free guide</h2>
+          <p class="fc-sub">Tell us where to send it. No spam, just the guide and the occasional note from our school.</p>
+
+          <!--
+            ============================================================
+            EMAIL CAPTURE FORM
+            To go live, set the form's `action` to your provider endpoint:
+              • Formspree:  action="https://formspree.io/f/XXXXXXXX"  method="POST"
+              • Getform:    action="https://getform.io/f/XXXXXXXX"   method="POST"
+              • MailerLite/Mailchimp: paste their embed or set action to their POST URL
+            The JS below will redirect to /thank-you.html on success.
+            Until you set a real endpoint, submitting just goes to the
+            thank-you page (no data is stored).
+            ============================================================
+          -->
+          <form id="leadForm" action="REPLACE_WITH_YOUR_FORM_ENDPOINT" method="POST" novalidate>
+            <div class="field">
+              <label for="name">First name</label>
+              <input type="text" id="name" name="name" placeholder="Your first name" autocomplete="given-name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+            </div>
+            <!-- Optional honeypot for spam bots -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">Send Me the Free Guide →</button>
+            <div class="trust-row"><svg class="lock-ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Your information stays private. Unsubscribe anytime.</div>
+            <p class="fineprint">By requesting the guide you agree to receive emails from Raised &amp; Rooted Academy. We never sell your information.</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- SUPPORT — proof and details, below the fold on mobile -->
+      <div class="support-col">
+        <div class="optin-cover">
+          <img class="cover-photo" src="assets/guide-cover.jpg" alt="The Raised & Rooted Academy free parent guide" style="border-radius:10px" />
+        </div>
+        <h4>Inside the guide:</h4>
+        <ul class="optin-list">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>The real data on public vs. private vs. micro-school outcomes, side by side</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>How the school you choose tracks with lifetime earnings and life outcomes</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>10 simple at-home routines that build a confident, well-spoken child</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>The exact questions to ask before you enroll anywhere</li>
+        </ul>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="n">1 in 3</div><div class="l">read proficiently by 8th grade</div></div>
+          <div class="mini-stat"><div class="n">~6</div><div class="l">kids in our groups</div></div>
+          <div class="mini-stat"><div class="n">10</div><div class="l">routines you can start tonight</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('leadForm');
+      var btn = document.getElementById('submitBtn');
+
+      form.addEventListener('submit', function (e) {
+        var action = form.getAttribute('action');
+        var endpointReady = action && action.indexOf('REPLACE_WITH') === -1;
+
+        // Basic validation
+        var name = form.name.value.trim();
+        var email = form.email.value.trim();
+        if (!name || !email || email.indexOf('@') === -1) {
+          return; // let native validation handle it
+        }
+
+        // Stash the name so the thank-you page can greet them
+        try { localStorage.setItem('rr_lead_name', name); } catch (err) {}
+
+        if (!endpointReady) {
+          // No provider wired yet, skip the network call, go straight to thank-you
+          e.preventDefault();
+          window.location.href = '/thank-you.html';
+          return;
+        }
+
+        // Endpoint is set: submit via fetch so we can redirect cleanly
+        e.preventDefault();
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+
+        var data = new FormData(form);
+        fetch(action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+          .then(function () { window.location.href = '/thank-you.html'; })
+          .catch(function () {
+            // Even on error, don't trap the user, send them to thank-you
+            window.location.href = '/thank-you.html';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
